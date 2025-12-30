@@ -21,6 +21,11 @@ const Navbar = () => {
         return () => window.removeEventListener('scroll', handleScroll);
     }, []);
 
+    useEffect(() => {
+        setIsMobileMenuOpen(false);
+        setIsThemeOpen(false);
+    }, [location.pathname]);
+
     const navLinks = [
         { name: 'Home', href: '/' },
         { name: 'Services', href: '/services' },
@@ -77,7 +82,10 @@ const Navbar = () => {
 
                         <div className="relative">
                             <button
-                                onClick={() => setIsThemeOpen(!isThemeOpen)}
+                                onClick={() => {
+                                    setIsThemeOpen(!isThemeOpen);
+                                    if (isMobileMenuOpen) setIsMobileMenuOpen(false);
+                                }}
                                 className="p-2 rounded-full hover:bg-steel-100 dark:hover:bg-white/5 transition-colors text-steel-600 dark:text-flame-300"
                                 aria-label="Theme menu"
                             >
@@ -90,7 +98,7 @@ const Navbar = () => {
                                         initial={{ opacity: 0, y: 10, scale: 0.95 }}
                                         animate={{ opacity: 1, y: 0, scale: 1 }}
                                         exit={{ opacity: 0, y: 10, scale: 0.95 }}
-                                        className="absolute right-0 mt-2 w-32 bg-white/90 dark:bg-steel-800/90 backdrop-blur-lg border border-steel-200 dark:border-white/10 rounded-xl shadow-2xl overflow-hidden py-1"
+                                        className="absolute right-0 mt-2 w-32 bg-white/90 dark:bg-steel-800/90 backdrop-blur-lg border border-steel-200 dark:border-white/10 rounded-xl shadow-2xl overflow-hidden py-1 z-50"
                                     >
                                         {themeOptions.map((opt) => (
                                             <button
@@ -116,15 +124,47 @@ const Navbar = () => {
                     </div>
 
                     {/* Mobile Menu Btn */}
-                    <div className="flex items-center gap-2 md:hidden">
+                    <div className="flex items-center gap-2 md:hidden relative">
                         <button
-                            onClick={() => setIsThemeOpen(!isThemeOpen)}
+                            onClick={() => {
+                                setIsThemeOpen(!isThemeOpen);
+                                if (isMobileMenuOpen) setIsMobileMenuOpen(false);
+                            }}
                             className="p-2 rounded-full hover:bg-steel-100 dark:hover:bg-white/5 text-steel-700 dark:text-white"
                         >
                             <CurrentThemeIcon className="h-5 w-5" />
                         </button>
+
+                        <AnimatePresence>
+                            {isThemeOpen && (
+                                <motion.div
+                                    initial={{ opacity: 0, y: 10, scale: 0.95 }}
+                                    animate={{ opacity: 1, y: 0, scale: 1 }}
+                                    exit={{ opacity: 0, y: 10, scale: 0.95 }}
+                                    className="absolute right-10 top-full mt-2 w-32 bg-white/90 dark:bg-steel-800/90 backdrop-blur-lg border border-steel-200 dark:border-white/10 rounded-xl shadow-2xl overflow-hidden py-1 z-[60]"
+                                >
+                                    {themeOptions.map((opt) => (
+                                        <button
+                                            key={opt.id}
+                                            onClick={() => { setTheme(opt.id); setIsThemeOpen(false); }}
+                                            className={cn(
+                                                "w-full flex items-center gap-2 px-3 py-2 text-sm transition-colors hover:bg-steel-50 dark:hover:bg-white/5",
+                                                theme === opt.id ? "text-flame-500" : "text-steel-600 dark:text-white/70"
+                                            )}
+                                        >
+                                            <opt.icon className="h-4 w-4" />
+                                            {opt.label}
+                                        </button>
+                                    ))}
+                                </motion.div>
+                            )}
+                        </AnimatePresence>
+
                         <button
-                            onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+                            onClick={() => {
+                                setIsMobileMenuOpen(!isMobileMenuOpen);
+                                if (isThemeOpen) setIsThemeOpen(false);
+                            }}
                             className="p-2 rounded-xl hover:bg-steel-100 dark:hover:bg-white/5 text-steel-700 dark:text-white"
                         >
                             {isMobileMenuOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
