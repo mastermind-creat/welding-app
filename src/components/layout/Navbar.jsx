@@ -49,7 +49,7 @@ const Navbar = () => {
                 'fixed inset-x-0 top-0 z-50 transition-all duration-300',
                 isScrolled
                     ? 'backdrop-blur-md bg-white/70 dark:bg-steel-900/80 border-b border-steel-200 dark:border-white/10'
-                    : 'bg-transparent'
+                    : 'backdrop-blur-sm bg-white/30 dark:bg-steel-900/30'
             )}
         >
             <nav className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">

@@ -87,8 +87,8 @@ const Footer = () => {
                     <p>© {currentYear} Engineer Owino Ngode. All rights reserved.</p>
                     <p className="mt-2 text-steel-400">
                         Powered by {' '}
-                        <a href="https://lates-portfolio-v1.vercel.app/" target="_blank" rel="noopener noreferrer" className="text-flame-400 hover:underline">
-                            Mastermind
+                        <a href="https://tech-safi-k21q.vercel.app/" target="_blank" rel="noopener noreferrer" className="text-flame-400 hover:underline">
+                            TechSafi
                         </a>
                     </p>
                 </div>
