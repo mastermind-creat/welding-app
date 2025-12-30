@@ -1,0 +1,60 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Poppins:wght@600;700;800&display=swap');
+@import "tailwindcss";
+@config "../tailwind.config.js";
+
+@layer base {
+  body {
+    @apply bg-white text-steel-900 font-body tracking-tight transition-colors duration-300;
+  }
+}
+
+.dark body {
+  @apply bg-steel-900 text-white;
+}
+
+.spark-bg {
+  background: radial-gradient(circle at 50% 50%, rgba(255, 106, 0, 0.1) 0%, transparent 70%);
+}
+
+.shadow-glow {
+  box-shadow: 0 0 28px rgba(255, 106, 0, 0.35);
+}
+
+/* Custom Swiper Styles */
+.swiper-pagination-bullet {
+  @apply bg-steel-400 opacity-100;
+}
+
+.dark .swiper-pagination-bullet {
+  @apply bg-white/50;
+}
+
+.swiper-pagination-bullet-active {
+  @apply bg-flame-500;
+}
+
+.swiper-button-next,
+.swiper-button-prev {
+  @apply text-flame-500 after:text-2xl;
+}
+
+/* Scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  @apply bg-steel-100;
+}
+
+.dark ::-webkit-scrollbar-track {
+  @apply bg-steel-900;
+}
+
+::-webkit-scrollbar-thumb {
+  @apply bg-steel-300 rounded-full hover:bg-steel-400;
+}
+
+.dark ::-webkit-scrollbar-thumb {
+  @apply bg-steel-700 rounded-full hover:bg-steel-600;
+}
