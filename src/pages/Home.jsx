@@ -21,7 +21,7 @@ const Home = () => {
             {/* Hero Section */}
             <section className="relative pt-20 pb-24 spark-bg overflow-hidden min-h-[90vh] flex items-center">
                 <img
-                    src="https://images.unsplash.com/photo-1544829099-26de0c2226c6?q=80&w=1400&auto=format&fit=crop"
+                    src="https://images.unsplash.com/photo-1504328345606-18bbc8c9d7d1?q=80&w=1400&auto=format&fit=crop"
                     alt="Welder at work"
                     className="absolute inset-0 h-full w-full object-cover opacity-10 dark:opacity-20 pointer-events-none select-none"
                 />
